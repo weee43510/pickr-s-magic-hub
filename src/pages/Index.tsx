@@ -1,16 +1,42 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import AppSidebar, { type ToolId } from "@/components/AppSidebar";
+import AiMystic from "@/components/tools/AiMystic";
+import FingerRoulette from "@/components/tools/FingerRoulette";
+import PhotoWheel from "@/components/tools/PhotoWheel";
+import RankingBoard from "@/components/tools/RankingBoard";
+import TeamSplitter from "@/components/tools/TeamSplitter";
+import CoinDice from "@/components/tools/CoinDice";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
-  return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
-    </div>
-  );
+const toolComponents: Record<ToolId, React.FC> = {
+  mystic: AiMystic,
+  roulette: FingerRoulette,
+  wheel: PhotoWheel,
+  ranking: RankingBoard,
+  teams: TeamSplitter,
+  coinDice: CoinDice,
 };
 
-const Index = PlaceholderIndex;
+export default function Index() {
+  const [activeTool, setActiveTool] = useState<ToolId>("mystic");
+  const [collapsed, setCollapsed] = useState(false);
 
-export default Index;
+  const ActiveComponent = toolComponents[activeTool];
+
+  return (
+    <div className="gradient-bg-animated min-h-screen">
+      <AppSidebar
+        active={activeTool}
+        onSelect={setActiveTool}
+        collapsed={collapsed}
+        onToggle={() => setCollapsed(!collapsed)}
+      />
+      <main
+        className={`transition-all duration-300 min-h-screen p-6 ${collapsed ? "ml-16" : "ml-56"}`}
+      >
+        <div className="max-w-5xl mx-auto">
+          <ActiveComponent />
+        </div>
+      </main>
+    </div>
+  );
+}
