@@ -54,7 +54,6 @@ export default function CoinDice() {
       setDiceResult(result);
       setDiceRolling(false);
       sounds.win();
-      triggerWinHype();
     }, 1800);
   };
 
