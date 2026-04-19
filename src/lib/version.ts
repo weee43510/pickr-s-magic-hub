@@ -1,4 +1,4 @@
-export const APP_VERSION = "1.1.0";
+export const APP_VERSION = "1.2.0";
 
 export interface ChangelogEntry {
   version: string;
@@ -7,6 +7,18 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOGS: ChangelogEntry[] = [
+  {
+    version: "1.2.0",
+    date: "2026-04-19",
+    notes: [
+      "Rebranded from Pickr to Randomizr",
+      "Added Vibe Themes: Cyberpunk, Matrix, Sunset",
+      "Added drumroll + tada hype sounds with screen shake on win",
+      "Spring animations on all buttons + juicier glassmorphism",
+      "Fixed: dice text result now always matches the 3D face",
+      "Hidden easter egg in AI Mystic 👀",
+    ],
+  },
   {
     version: "1.1.0",
     date: "2026-04-15",
@@ -22,7 +34,7 @@ export const CHANGELOGS: ChangelogEntry[] = [
     version: "1.0.0",
     date: "2026-04-14",
     notes: [
-      "Initial release of Pickr",
+      "Initial release",
       "AI Mystic 8-Ball with sassy responses",
       "Finger Roulette with multi-touch support",
       "Photo Wheel with weights & elimination mode",
