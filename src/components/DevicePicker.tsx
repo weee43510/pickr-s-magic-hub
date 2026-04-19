@@ -27,8 +27,8 @@ export default function DevicePicker({ onSelect }: Props) {
     <div className="gradient-bg-animated min-h-screen flex items-center justify-center p-6">
       <div className="glass-card-highlight p-8 max-w-md w-full space-y-6 text-center">
         <div className="space-y-2">
-          <h1 className="neon-text-cyan font-serif text-4xl font-extrabold my-0 mx-0 px-0 border-4 border-solid">Randomizr</h1>
-          <p className="text-sm text-muted-foreground">Choose your device for the best experience</p>
+          <h1 className="neon-text-cyan font-serif text-4xl font-extrabold my-0 mx-0 px-0 border-4 border-none">Randomizr</h1>
+          <p className="text-sm text-muted-foreground">Please pick a device, picking a device will optimize the website for the BEST possible experience, it will only affect the menu and UI.</p>
         </div>
 
         <div className="grid gap-3">
