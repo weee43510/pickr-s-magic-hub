@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { sounds } from "@/lib/sounds";
+import { sounds, triggerWinHype } from "@/lib/sounds";
 
 export default function TeamSplitter() {
   const [input, setInput] = useState("");
@@ -20,6 +20,7 @@ export default function TeamSplitter() {
     names.forEach((name, i) => result[i % teamCount].push(name));
     setTeams(result);
     sounds.win();
+    triggerWinHype();
   };
 
   const TEAM_COLORS = ["hsl(187 94% 43%)", "hsl(263 70% 58%)", "hsl(330 80% 60%)", "hsl(150 80% 50%)", "hsl(40 90% 55%)"];
@@ -43,7 +44,7 @@ export default function TeamSplitter() {
             <button
               key={n}
               onClick={() => setTeamCount(n)}
-              className={`w-9 h-9 rounded-lg text-sm font-bold transition-all ${
+              className={`spring-btn w-9 h-9 rounded-lg text-sm font-bold ${
                 teamCount === n ? "bg-primary/30 text-primary border border-primary/50 neon-glow-cyan" : "bg-muted/40 text-muted-foreground border border-border/30 hover:bg-muted/60"
               }`}
             >
@@ -53,7 +54,7 @@ export default function TeamSplitter() {
         </div>
         <button
           onClick={split}
-          className="ml-auto px-6 py-2.5 rounded-lg bg-primary/20 border border-primary/40 text-primary font-semibold hover:bg-primary/30 transition-all neon-glow-cyan"
+          className="spring-btn ml-auto px-6 py-2.5 rounded-lg bg-primary/20 border border-primary/40 text-primary font-semibold hover:bg-primary/30 neon-glow-cyan"
         >
           Split!
         </button>
