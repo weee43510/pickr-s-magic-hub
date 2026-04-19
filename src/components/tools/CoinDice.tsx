@@ -23,7 +23,6 @@ export default function CoinDice() {
       setCoinResult(result);
       setCoinFlipping(false);
       sounds.win();
-      triggerWinHype();
     }, 1500);
   };
 
