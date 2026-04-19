@@ -46,7 +46,7 @@ export default function AppSidebar({
       <>
         {/* Mobile hamburger header */}
         <header className="fixed top-0 left-0 right-0 z-50 glass-card border-b border-border/30 rounded-none flex items-center justify-between px-4 py-3">
-          <span className="text-neon-cyan font-bold text-lg tracking-tight">Pickr</span>
+          <span className="text-neon-cyan font-bold text-lg tracking-tight">Randomizr</span>
           <button onClick={onMobileToggle} className="text-foreground p-1">
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -98,8 +98,8 @@ export default function AppSidebar({
       style={{ borderColor: "hsla(var(--glass-border) / 0.08)" }}
     >
       <div className="flex items-center gap-2 px-4 py-5 border-b border-border/30">
-        <button onClick={onToggle} className="text-neon-cyan font-bold text-xl tracking-tight">
-          {sidebarCollapsed ? "P" : "Pickr"}
+        <button onClick={onToggle} className="spring-btn text-neon-cyan font-bold text-xl tracking-tight">
+          {sidebarCollapsed ? "R" : "Randomizr"}
         </button>
       </div>
 
