@@ -1,0 +1,188 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0D0D1A"/>
+      <stop offset="60%" style="stop-color:#1A0A2E"/>
+      <stop offset="100%" style="stop-color:#0A1628"/>
+    </linearGradient>
+    <linearGradient id="pinkBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF3CAC"/>
+      <stop offset="50%" style="stop-color:#784BA0"/>
+      <stop offset="100%" style="stop-color:#2B86C5"/>
+    </linearGradient>
+    <linearGradient id="diceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#cfc4f0"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="20" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#FF3CAC" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+
+  <!-- Ambient glow blobs -->
+  <ellipse cx="200" cy="200" rx="300" ry="200" fill="#FF3CAC" opacity="0.07"/>
+  <ellipse cx="1050" cy="450" rx="280" ry="200" fill="#2B86C5" opacity="0.09"/>
+  <ellipse cx="600" cy="600" rx="350" ry="180" fill="#784BA0" opacity="0.06"/>
+
+  <!-- Grid dots (background texture) -->
+  <g opacity="0.12" fill="#ffffff">
+    <!-- Row 1 -->
+    <circle cx="80" cy="80" r="2"/><circle cx="160" cy="80" r="2"/><circle cx="240" cy="80" r="2"/>
+    <circle cx="320" cy="80" r="2"/><circle cx="400" cy="80" r="2"/><circle cx="480" cy="80" r="2"/>
+    <circle cx="560" cy="80" r="2"/><circle cx="640" cy="80" r="2"/><circle cx="720" cy="80" r="2"/>
+    <circle cx="800" cy="80" r="2"/><circle cx="880" cy="80" r="2"/><circle cx="960" cy="80" r="2"/>
+    <circle cx="1040" cy="80" r="2"/><circle cx="1120" cy="80" r="2"/>
+    <!-- Row 2 -->
+    <circle cx="80" cy="160" r="2"/><circle cx="160" cy="160" r="2"/><circle cx="240" cy="160" r="2"/>
+    <circle cx="320" cy="160" r="2"/><circle cx="400" cy="160" r="2"/><circle cx="480" cy="160" r="2"/>
+    <circle cx="560" cy="160" r="2"/><circle cx="640" cy="160" r="2"/><circle cx="720" cy="160" r="2"/>
+    <circle cx="800" cy="160" r="2"/><circle cx="880" cy="160" r="2"/><circle cx="960" cy="160" r="2"/>
+    <circle cx="1040" cy="160" r="2"/><circle cx="1120" cy="160" r="2"/>
+    <!-- Row 3 -->
+    <circle cx="80" cy="240" r="2"/><circle cx="160" cy="240" r="2"/><circle cx="240" cy="240" r="2"/>
+    <circle cx="320" cy="240" r="2"/><circle cx="400" cy="240" r="2"/><circle cx="480" cy="240" r="2"/>
+    <circle cx="560" cy="240" r="2"/><circle cx="640" cy="240" r="2"/><circle cx="720" cy="240" r="2"/>
+    <circle cx="800" cy="240" r="2"/><circle cx="880" cy="240" r="2"/><circle cx="960" cy="240" r="2"/>
+    <circle cx="1040" cy="240" r="2"/><circle cx="1120" cy="240" r="2"/>
+    <!-- Row 4 -->
+    <circle cx="80" cy="320" r="2"/><circle cx="160" cy="320" r="2"/><circle cx="240" cy="320" r="2"/>
+    <circle cx="320" cy="320" r="2"/><circle cx="400" cy="320" r="2"/><circle cx="480" cy="320" r="2"/>
+    <circle cx="560" cy="320" r="2"/><circle cx="640" cy="320" r="2"/><circle cx="720" cy="320" r="2"/>
+    <circle cx="800" cy="320" r="2"/><circle cx="880" cy="320" r="2"/><circle cx="960" cy="320" r="2"/>
+    <circle cx="1040" cy="320" r="2"/><circle cx="1120" cy="320" r="2"/>
+    <!-- Row 5 -->
+    <circle cx="80" cy="400" r="2"/><circle cx="160" cy="400" r="2"/><circle cx="240" cy="400" r="2"/>
+    <circle cx="320" cy="400" r="2"/><circle cx="400" cy="400" r="2"/><circle cx="480" cy="400" r="2"/>
+    <circle cx="560" cy="400" r="2"/><circle cx="640" cy="400" r="2"/><circle cx="720" cy="400" r="2"/>
+    <circle cx="800" cy="400" r="2"/><circle cx="880" cy="400" r="2"/><circle cx="960" cy="400" r="2"/>
+    <circle cx="1040" cy="400" r="2"/><circle cx="1120" cy="400" r="2"/>
+    <!-- Row 6 -->
+    <circle cx="80" cy="480" r="2"/><circle cx="160" cy="480" r="2"/><circle cx="240" cy="480" r="2"/>
+    <circle cx="320" cy="480" r="2"/><circle cx="400" cy="480" r="2"/><circle cx="480" cy="480" r="2"/>
+    <circle cx="560" cy="480" r="2"/><circle cx="640" cy="480" r="2"/><circle cx="720" cy="480" r="2"/>
+    <circle cx="800" cy="480" r="2"/><circle cx="880" cy="480" r="2"/><circle cx="960" cy="480" r="2"/>
+    <circle cx="1040" cy="480" r="2"/><circle cx="1120" cy="480" r="2"/>
+    <!-- Row 7 -->
+    <circle cx="80" cy="560" r="2"/><circle cx="160" cy="560" r="2"/><circle cx="240" cy="560" r="2"/>
+    <circle cx="320" cy="560" r="2"/><circle cx="400" cy="560" r="2"/><circle cx="480" cy="560" r="2"/>
+    <circle cx="560" cy="560" r="2"/><circle cx="640" cy="560" r="2"/><circle cx="720" cy="560" r="2"/>
+    <circle cx="800" cy="560" r="2"/><circle cx="880" cy="560" r="2"/><circle cx="960" cy="560" r="2"/>
+    <circle cx="1040" cy="560" r="2"/><circle cx="1120" cy="560" r="2"/>
+  </g>
+
+  <!-- ========= LEFT DICE (big, tilted) ========= -->
+  <g transform="translate(130, 220) rotate(-15)" filter="url(#shadow)">
+    <rect width="180" height="180" rx="32" fill="url(#diceGrad)" opacity="0.95"/>
+    <!-- 6-face dots -->
+    <circle cx="50" cy="50" r="16" fill="#FF3CAC"/>
+    <circle cx="90" cy="50" r="16" fill="#784BA0"/>
+    <circle cx="130" cy="50" r="16" fill="#2B86C5"/>
+    <circle cx="50" cy="90" r="16" fill="#FF3CAC"/>
+    <circle cx="130" cy="90" r="16" fill="#784BA0"/>
+    <circle cx="50" cy="130" r="16" fill="#2B86C5"/>
+    <circle cx="90" cy="130" r="16" fill="#784BA0"/>
+    <circle cx="130" cy="130" r="16" fill="#FF3CAC"/>
+  </g>
+
+  <!-- ========= RIGHT DICE (medium, tilted other way) ========= -->
+  <g transform="translate(920, 340) rotate(12)" filter="url(#shadow)">
+    <rect width="140" height="140" rx="26" fill="url(#diceGrad)" opacity="0.88"/>
+    <!-- 3-face dots -->
+    <circle cx="38" cy="38" r="13" fill="#784BA0"/>
+    <circle cx="70" cy="70" r="13" fill="#FF3CAC"/>
+    <circle cx="102" cy="102" r="13" fill="#2B86C5"/>
+  </g>
+
+  <!-- ========= SMALL FLOATING DICE ========= -->
+  <g transform="translate(960, 100) rotate(20)">
+    <rect width="70" height="70" rx="14" fill="url(#diceGrad)" opacity="0.6"/>
+    <circle cx="22" cy="22" r="7" fill="#FF3CAC"/>
+    <circle cx="48" cy="48" r="7" fill="#784BA0"/>
+  </g>
+  <g transform="translate(100, 470) rotate(-8)">
+    <rect width="60" height="60" rx="12" fill="url(#diceGrad)" opacity="0.5"/>
+    <circle cx="20" cy="20" r="6" fill="#2B86C5"/>
+    <circle cx="40" cy="40" r="6" fill="#FF3CAC"/>
+    <circle cx="20" cy="40" r="6" fill="#784BA0"/>
+  </g>
+
+  <!-- ========= SPARKLE STARS ========= -->
+  <!-- Big sparkle top right -->
+  <g transform="translate(1080, 130)" filter="url(#glow)">
+    <polygon points="0,-22 6,-6 22,0 6,6 0,22 -6,6 -22,0 -6,-6" fill="#FFE44D" opacity="0.9"/>
+  </g>
+  <!-- Small sparkle left -->
+  <g transform="translate(380, 130)">
+    <polygon points="0,-12 4,-4 12,0 4,4 0,12 -4,4 -12,0 -4,-4" fill="#FFE44D" opacity="0.7"/>
+  </g>
+  <!-- Tiny sparkle bottom -->
+  <g transform="translate(820, 530)">
+    <polygon points="0,-8 2.5,-2.5 8,0 2.5,2.5 0,8 -2.5,2.5 -8,0 -2.5,-2.5" fill="#FF3CAC" opacity="0.8"/>
+  </g>
+  <!-- Sparkle near title -->
+  <g transform="translate(440, 520)" filter="url(#glow)">
+    <polygon points="0,-14 4,-4 14,0 4,4 0,14 -4,4 -14,0 -4,-4" fill="#2B86C5" opacity="0.8"/>
+  </g>
+
+  <!-- ========= GRADIENT ACCENT BAR ========= -->
+  <rect x="390" y="196" width="420" height="6" rx="3" fill="url(#pinkBlue)" opacity="0.6"/>
+
+  <!-- ========= LOGO ICON (mini dice inline) ========= -->
+  <g transform="translate(388, 228)" filter="url(#shadow)">
+    <rect width="52" height="52" rx="10" fill="url(#pinkBlue)"/>
+    <!-- 5-face dots -->
+    <circle cx="14" cy="14" r="5" fill="white" opacity="0.9"/>
+    <circle cx="38" cy="14" r="5" fill="white" opacity="0.9"/>
+    <circle cx="26" cy="26" r="5" fill="white" opacity="0.9"/>
+    <circle cx="14" cy="38" r="5" fill="white" opacity="0.9"/>
+    <circle cx="38" cy="38" r="5" fill="white" opacity="0.9"/>
+  </g>
+
+  <!-- ========= MAIN TITLE ========= -->
+  <text x="452" y="272" font-family="'Courier New', Courier, monospace" font-size="88" font-weight="900" letter-spacing="-4" fill="url(#pinkBlue)" filter="url(#softGlow)">randomizr</text>
+
+  <!-- White overlay for crispness -->
+  <text x="452" y="272" font-family="'Courier New', Courier, monospace" font-size="88" font-weight="900" letter-spacing="-4" fill="white" opacity="0.92">randomizr</text>
+
+  <!-- ========= TAGLINE ========= -->
+  <text x="452" y="322" font-family="'Courier New', Courier, monospace" font-size="24" letter-spacing="3" fill="#a78bfa" opacity="0.85">CURE YOUR BOREDOM. SPIN THE WHEEL.</text>
+
+  <!-- ========= BOTTOM URL ========= -->
+  <text x="452" y="540" font-family="'Courier New', Courier, monospace" font-size="20" letter-spacing="2" fill="#ffffff" opacity="0.35">randomizr.vercel.app</text>
+
+  <!-- ========= PILL TAGS ========= -->
+  <!-- Games -->
+  <rect x="452" y="360" width="114" height="36" rx="18" fill="#FF3CAC" opacity="0.18"/>
+  <rect x="452" y="360" width="114" height="36" rx="18" fill="none" stroke="#FF3CAC" stroke-width="1.5" opacity="0.6"/>
+  <text x="509" y="383" font-family="'Courier New', monospace" font-size="15" font-weight="700" fill="#FF3CAC" text-anchor="middle" letter-spacing="1">🎮 GAMES</text>
+
+  <!-- Tools -->
+  <rect x="578" y="360" width="110" height="36" rx="18" fill="#784BA0" opacity="0.18"/>
+  <rect x="578" y="360" width="110" height="36" rx="18" fill="none" stroke="#784BA0" stroke-width="1.5" opacity="0.6"/>
+  <text x="633" y="383" font-family="'Courier New', monospace" font-size="15" font-weight="700" fill="#a78bfa" text-anchor="middle" letter-spacing="1">🛠 TOOLS</text>
+
+  <!-- Random -->
+  <rect x="700" y="360" width="130" height="36" rx="18" fill="#2B86C5" opacity="0.18"/>
+  <rect x="700" y="360" width="130" height="36" rx="18" fill="none" stroke="#2B86C5" stroke-width="1.5" opacity="0.6"/>
+  <text x="765" y="383" font-family="'Courier New', monospace" font-size="15" font-weight="700" fill="#60a5fa" text-anchor="middle" letter-spacing="1">✨ RANDOM</text>
+
+  <!-- ========= BOTTOM DIVIDER ========= -->
+  <rect x="390" y="510" width="420" height="2" rx="1" fill="url(#pinkBlue)" opacity="0.25"/>
+</svg>
