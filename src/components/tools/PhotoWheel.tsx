@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { sounds } from "@/lib/sounds";
+import { sounds, triggerWinHype } from "@/lib/sounds";
 import { loadFromStorage, saveToStorage } from "@/lib/storage";
 
 interface Slice {
@@ -48,7 +48,7 @@ export default function PhotoWheel() {
     if (spinning || slices.length < 2) return;
     setSpinning(true);
     setWinner(null);
-    sounds.spin();
+    sounds.drumroll(4000);
 
     const totalWeight = slices.reduce((a, s) => a + s.weight, 0);
     const rand = Math.random() * totalWeight;
@@ -70,6 +70,7 @@ export default function PhotoWheel() {
       setSpinning(false);
       setWinner(slices[winnerIdx].label);
       sounds.win();
+      triggerWinHype();
       if (elimination) {
         const remaining = slices.filter((_, i) => i !== winnerIdx);
         if (remaining.length > 0) save(remaining);
@@ -156,7 +157,7 @@ export default function PhotoWheel() {
         <button
           onClick={spin}
           disabled={spinning || slices.length < 2}
-          className="px-8 py-3 rounded-lg bg-primary/20 border border-primary/40 text-primary font-bold hover:bg-primary/30 transition-all disabled:opacity-50 neon-glow-cyan"
+          className="spring-btn px-8 py-3 rounded-lg bg-primary/20 border border-primary/40 text-primary font-bold hover:bg-primary/30 disabled:opacity-50 neon-glow-cyan"
         >
           {spinning ? "Spinning..." : "SPIN!"}
         </button>
@@ -187,7 +188,7 @@ export default function PhotoWheel() {
             placeholder="Add option..."
             className="flex-1 px-3 py-2 rounded-lg bg-muted/50 border border-border/50 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50"
           />
-          <button onClick={addSlice} className="px-3 py-2 rounded-lg bg-primary/20 text-primary text-sm font-semibold">+</button>
+          <button onClick={addSlice} className="spring-btn px-3 py-2 rounded-lg bg-primary/20 text-primary text-sm font-semibold">+</button>
         </div>
 
         <div className="space-y-2 max-h-60 overflow-y-auto">

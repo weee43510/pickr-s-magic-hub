@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from "react";
-import { sounds } from "@/lib/sounds";
+import { sounds, triggerWinHype } from "@/lib/sounds";
 
 interface Touch {
   id: number;
@@ -41,6 +41,7 @@ export default function FingerRoulette() {
     if (touchList.length < 2) return;
     setWinner(null);
     setCountdown(3);
+    sounds.drumroll(3000);
     let count = 3;
     timerRef.current = setInterval(() => {
       count--;
@@ -51,6 +52,7 @@ export default function FingerRoulette() {
         const w = Math.floor(Math.random() * touchList.length);
         setWinner(touchList[w].id);
         sounds.win();
+        triggerWinHype();
         if (navigator.vibrate) navigator.vibrate(200);
       } else {
         setCountdown(count);
