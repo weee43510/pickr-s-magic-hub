@@ -1,37 +1,34 @@
 import confetti from "canvas-confetti";
 
-/** Quick win burst from the bottom-center. */
-export function celebrate(intensity: "small" | "medium" | "big" = "medium") {
-  const counts = { small: 50, medium: 120, big: 220 }[intensity];
+/** 
+ * Minimal lag version: 
+ * - Fixed low particle count (max 15)
+ * - No infinite loops/frames
+ * - Single burst only
+ */
+export function celebrate() {
   confetti({
-    particleCount: counts,
-    spread: 90,
-    origin: { y: 0.7 },
-    colors: ["#00f0ff", "#ff00ea", "#ffe600", "#7cff00", "#ff7a00"],
+    particleCount: 15,
+    spread: 50,
+    origin: { y: 0.8 },
+    ticks: 150, // Disappears faster to save memory
+    colors: ["#00f0ff", "#ff00ea"],
+    disableForReducedMotion: true
   });
 }
 
-/** Side cannons — for big wins. */
+/** Disabled to prevent lag */
 export function cannons() {
-  const end = Date.now() + 800;
-  const colors = ["#00f0ff", "#ff00ea", "#ffe600"];
-  (function frame() {
-    confetti({ particleCount: 6, angle: 60, spread: 55, origin: { x: 0 }, colors });
-    confetti({ particleCount: 6, angle: 120, spread: 55, origin: { x: 1 }, colors });
-    if (Date.now() < end) requestAnimationFrame(frame);
-  })();
+  celebrate(); 
 }
 
-/** Rain a single emoji, used by easter eggs. */
-export function emojiRain(emoji: string, count = 60) {
-  const scalar = 2;
-  const shape = confetti.shapeFromText({ text: emoji, scalar });
+/** Minimal emoji burst */
+export function emojiRain(emoji: string) {
+  const shape = confetti.shapeFromText({ text: emoji, scalar: 2 });
   confetti({
-    particleCount: count,
-    spread: 360,
-    startVelocity: 35,
-    origin: { y: 0.2 },
+    particleCount: 5,
     shapes: [shape],
-    scalar,
+    origin: { y: 0.5 },
+    scalar: 2
   });
 }
