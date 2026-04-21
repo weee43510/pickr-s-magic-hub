@@ -12,6 +12,8 @@ import TriviaQuiz from "@/components/tools/TriviaQuiz";
 import BingoCaller from "@/components/tools/BingoCaller";
 import RockPaperScissors from "@/components/tools/RockPaperScissors";
 import TicTacToe from "@/components/tools/TicTacToe";
+import BingoTournament from "@/components/tools/BingoTournament";
+import Dashboard from "@/components/tools/Dashboard";
 import StickyCanvas from "@/components/tools/StickyCanvas";
 import Notepad from "@/components/tools/Notepad";
 import ReactionTime from "@/components/tools/ReactionTime";
@@ -23,11 +25,15 @@ import EmojiStory from "@/components/tools/EmojiStory";
 import ColorMatch from "@/components/tools/ColorMatch";
 import PageTransition from "@/components/PageTransition";
 import DevicePicker, { getStoredDevice, type DeviceType } from "@/components/DevicePicker";
+import PixelPet from "@/components/PixelPet";
+import VoiceCommandButton from "@/components/VoiceCommandButton";
 import { loadFromStorage, saveToStorage } from "@/lib/storage";
 import { useKonamiCode } from "@/lib/easterEggs";
 import { tickDailyStreak } from "@/lib/streak";
+import { unlock, trackToolUsage } from "@/lib/achievements";
 
-const toolComponents: Record<ToolId, React.FC> = {
+const toolComponents: Record<ToolId, React.FC<any>> = {
+  dashboard: Dashboard as any,
   mystic: AiMystic,
   roulette: FingerRoulette,
   wheel: PhotoWheel,
@@ -38,6 +44,7 @@ const toolComponents: Record<ToolId, React.FC> = {
   wyr: WouldYouRather,
   trivia: TriviaQuiz,
   bingo: BingoCaller,
+  bingoTourney: BingoTournament,
   rps: RockPaperScissors,
   tictactoe: TicTacToe,
   reaction: ReactionTime,
@@ -53,24 +60,27 @@ const toolComponents: Record<ToolId, React.FC> = {
 
 export default function Index() {
   const [deviceType, setDeviceType] = useState<DeviceType | null>(getStoredDevice);
-  const [activeTool, setActiveTool] = useState<ToolId>("mystic");
+  const [activeTool, setActiveTool] = useState<ToolId>("dashboard");
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(() => loadFromStorage("sound_enabled", true));
   const [, setRainbowTick] = useState(0);
 
-  // Konami code unlock — listens app-wide
-  useKonamiCode(() => setRainbowTick((t) => t + 1));
+  useKonamiCode(() => { setRainbowTick((t) => t + 1); unlock("konami"); });
 
-  // Daily streak tick on app open
-  useEffect(() => { tickDailyStreak(); }, []);
+  useEffect(() => { tickDailyStreak(); unlock("first_visit"); }, []);
 
   const handleSoundToggle = (v: boolean) => { setSoundEnabled(v); saveToStorage("sound_enabled", v); };
   const handleDeviceChange = (d: DeviceType) => { setDeviceType(d); saveToStorage("device_type", d); };
+  const handleSelectTool = (id: ToolId) => { setActiveTool(id); trackToolUsage(id); };
 
-  if (!deviceType) {
-    return <DevicePicker onSelect={handleDeviceChange} />;
-  }
+  const handleVoice = (cmd: string) => {
+    const btns = Array.from(document.querySelectorAll<HTMLButtonElement>("button, [role='button']"));
+    const target = btns.find((b) => b.textContent?.toLowerCase().includes(cmd));
+    target?.click();
+  };
+
+  if (!deviceType) return <DevicePicker onSelect={handleDeviceChange} />;
 
   const ActiveComponent = toolComponents[activeTool];
   const isMobile = deviceType === "mobile";
@@ -81,7 +91,7 @@ export default function Index() {
     <div className="gradient-bg-animated min-h-screen">
       <AppSidebar
         active={activeTool}
-        onSelect={setActiveTool}
+        onSelect={handleSelectTool}
         collapsed={collapsed}
         onToggle={() => setCollapsed(!collapsed)}
         deviceType={deviceType}
@@ -98,10 +108,16 @@ export default function Index() {
       >
         <div className="max-w-5xl mx-auto">
           <PageTransition activeKey={activeTool}>
-            <ActiveComponent />
+            {activeTool === "dashboard" ? (
+              <Dashboard onPick={handleSelectTool} />
+            ) : (
+              <ActiveComponent />
+            )}
           </PageTransition>
         </div>
       </main>
+      <PixelPet />
+      <VoiceCommandButton onCommand={handleVoice} />
     </div>
   );
 }
