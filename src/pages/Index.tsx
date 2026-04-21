@@ -12,6 +12,8 @@ import TriviaQuiz from "@/components/tools/TriviaQuiz";
 import BingoCaller from "@/components/tools/BingoCaller";
 import RockPaperScissors from "@/components/tools/RockPaperScissors";
 import TicTacToe from "@/components/tools/TicTacToe";
+import BingoTournament from "@/components/tools/BingoTournament";
+import Dashboard from "@/components/tools/Dashboard";
 import StickyCanvas from "@/components/tools/StickyCanvas";
 import Notepad from "@/components/tools/Notepad";
 import ReactionTime from "@/components/tools/ReactionTime";
@@ -23,11 +25,15 @@ import EmojiStory from "@/components/tools/EmojiStory";
 import ColorMatch from "@/components/tools/ColorMatch";
 import PageTransition from "@/components/PageTransition";
 import DevicePicker, { getStoredDevice, type DeviceType } from "@/components/DevicePicker";
+import PixelPet from "@/components/PixelPet";
+import VoiceCommandButton from "@/components/VoiceCommandButton";
 import { loadFromStorage, saveToStorage } from "@/lib/storage";
 import { useKonamiCode } from "@/lib/easterEggs";
 import { tickDailyStreak } from "@/lib/streak";
+import { unlock, trackToolUsage } from "@/lib/achievements";
 
-const toolComponents: Record<ToolId, React.FC> = {
+const toolComponents: Record<ToolId, React.FC<any>> = {
+  dashboard: Dashboard as any,
   mystic: AiMystic,
   roulette: FingerRoulette,
   wheel: PhotoWheel,
@@ -38,6 +44,7 @@ const toolComponents: Record<ToolId, React.FC> = {
   wyr: WouldYouRather,
   trivia: TriviaQuiz,
   bingo: BingoCaller,
+  bingoTourney: BingoTournament,
   rps: RockPaperScissors,
   tictactoe: TicTacToe,
   reaction: ReactionTime,
