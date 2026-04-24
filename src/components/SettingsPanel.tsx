@@ -1,4 +1,4 @@
-import { Settings, Volume2, VolumeX, RotateCcw, Info, Palette, Check, Monitor, Tablet, Smartphone, Sparkles, KeyRound, Map, Trophy, Headphones, Brain, MessageCircle, Clock, Heart, Coffee } from "lucide-react";
+import { Settings, Volume2, VolumeX, RotateCcw, Info, Palette, Check, Monitor, Tablet, Smartphone, Sparkles, KeyRound, Map, Trophy, Headphones, Brain, MessageCircle, Heart, Coffee } from "lucide-react";
 import DevNotesPanel from "@/components/DevNotesPanel";
 import { useEffect, useState } from "react";
 import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription, DialogHeader } from "@/components/ui/dialog";
@@ -16,7 +16,6 @@ import AchievementsPanel from "@/components/AchievementsPanel";
 import SoundStudio from "@/components/SoundStudio";
 import CustomTriviaPanel from "@/components/CustomTriviaPanel";
 import SuggestionsPanel from "@/components/SuggestionsPanel";
-import VersionRollbackPanel from "@/components/VersionRollbackPanel";
 import { isRainbowUnlocked, applyRainbowTheme, matrixRainOverlay, isDevMode, setDevMode } from "@/lib/easterEggs";
 import { emojiRain, celebrate } from "@/lib/confetti";
 import { unlock } from "@/lib/achievements";
@@ -95,9 +94,9 @@ export default function SettingsPanel({ soundEnabled, onSoundToggle, deviceType,
   }, []);
 
   const handleResetData = () => {
-    if (!confirm("Wipe ALL saved data? Snapshots are kept.")) return;
+    if (!confirm("Wipe ALL saved data? This cannot be undone.")) return;
     const keys = Object.keys(localStorage).filter(
-      (k) => (k.startsWith("randomizr_") || k.startsWith("pickr_")) && k !== "randomizr_version_snapshots"
+      (k) => k.startsWith("randomizr_") || k.startsWith("pickr_")
     );
     keys.forEach((k) => localStorage.removeItem(k));
     window.location.reload();
@@ -181,7 +180,6 @@ export default function SettingsPanel({ soundEnabled, onSoundToggle, deviceType,
             <TabsTrigger value="trivia"><Brain className="w-3.5 h-3.5 mr-1.5" />Trivia</TabsTrigger>
             <TabsTrigger value="roadmap"><Map className="w-3.5 h-3.5 mr-1.5" />Roadmap</TabsTrigger>
             <TabsTrigger value="suggest"><MessageCircle className="w-3.5 h-3.5 mr-1.5" />Suggest</TabsTrigger>
-            <TabsTrigger value="rollback"><Clock className="w-3.5 h-3.5 mr-1.5" />Rollback</TabsTrigger>
             <TabsTrigger value="notes"><Coffee className="w-3.5 h-3.5 mr-1.5" />Dev Notes</TabsTrigger>
             <TabsTrigger value="secrets"><KeyRound className="w-3.5 h-3.5 mr-1.5" />Secrets</TabsTrigger>
             <TabsTrigger value="about"><Info className="w-3.5 h-3.5 mr-1.5" />About</TabsTrigger>
@@ -255,7 +253,6 @@ export default function SettingsPanel({ soundEnabled, onSoundToggle, deviceType,
             <TabsContent value="trivia" className="max-w-2xl mx-auto"><CustomTriviaPanel /></TabsContent>
             <TabsContent value="roadmap" className="max-w-6xl mx-auto"><Roadmap /></TabsContent>
             <TabsContent value="suggest" className="max-w-2xl mx-auto"><SuggestionsPanel /></TabsContent>
-            <TabsContent value="rollback" className="max-w-2xl mx-auto"><VersionRollbackPanel /></TabsContent>
             <TabsContent value="notes" className="max-w-2xl mx-auto"><DevNotesPanel /></TabsContent>
 
             {/* SECRETS */}
@@ -321,7 +318,7 @@ export default function SettingsPanel({ soundEnabled, onSoundToggle, deviceType,
               >
                 <RotateCcw className="w-4 h-4" /> Reset All Data
               </Button>
-              <p className="text-xs text-muted-foreground -mt-3">Wipes saved lists, scores, themes & devices. Snapshots are kept.</p>
+              <p className="text-xs text-muted-foreground -mt-3">Wipes saved lists, scores, themes & devices.</p>
 
               <button onClick={() => setShowChangelog(!showChangelog)} className="spring-btn flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground">
                 <Info className="w-3.5 h-3.5" />
