@@ -27,18 +27,22 @@ import RhythmTap from "@/components/tools/RhythmTap";
 import BalloonPop from "@/components/tools/BalloonPop";
 import MathSprint from "@/components/tools/MathSprint";
 import SeasonHub from "@/components/tools/SeasonHub";
-import Blackjack from "@/components/tools/season1/Blackjack";
-import Slots from "@/components/tools/season1/Slots";
-import RouletteRoyale from "@/components/tools/season1/RouletteRoyale";
+// Casino core
+import FlipDuel from "@/components/tools/casino/FlipDuel";
+import NeonRoulette from "@/components/tools/casino/NeonRoulette";
+import DealersBluff from "@/components/tools/casino/DealersBluff";
+import ChipCascade from "@/components/tools/casino/ChipCascade";
+import MindArena from "@/components/tools/casino/MindArena";
+import ChipShop from "@/components/tools/casino/ChipShop";
 import GenericSeasonGame from "@/components/tools/season1/GenericSeasonGame";
 import PageTransition from "@/components/PageTransition";
 import DevicePicker, { getStoredDevice, type DeviceType } from "@/components/DevicePicker";
 import VoiceCommandButton from "@/components/VoiceCommandButton";
 import { loadFromStorage, saveToStorage } from "@/lib/storage";
 import { useKonamiCode } from "@/lib/easterEggs";
-import { unlock, trackToolUsage, getToolUsage, getUnlocked } from "@/lib/achievements";
+import { unlock, trackToolUsage } from "@/lib/achievements";
 import { recordToolEvent } from "@/lib/discovery";
-import { checkAutoUnlocks, getCurrentSeason, ALL_SEASONS } from "@/lib/seasons";
+import { checkUnlocks, getCurrentSeason, ALL_SEASONS } from "@/lib/seasons";
 
 const toolComponents: Record<ToolId, React.FC<any>> = {
   dashboard: Dashboard as any,
@@ -50,6 +54,13 @@ const toolComponents: Record<ToolId, React.FC<any>> = {
   speedtap: SpeedTap, numhunt: NumberHunt, emoji: EmojiStory, colormatch: ColorMatch,
   rhythmtap: RhythmTap, balloonpop: BalloonPop, mathsprint: MathSprint,
   sticky: StickyCanvas, notepad: Notepad,
+  // Casino core
+  flipduel: FlipDuel,
+  neonRoulette: NeonRoulette,
+  dealersBluff: DealersBluff,
+  chipCascade: ChipCascade,
+  mindArena: MindArena,
+  chipShop: ChipShop,
 };
 
 export default function Index() {
@@ -65,8 +76,7 @@ export default function Index() {
 
   useEffect(() => {
     unlock("first_visit");
-    // Auto-unlock season games on boot
-    checkAutoUnlocks({ toolUsage: getToolUsage(), achievements: getUnlocked() });
+    checkUnlocks();
   }, []);
 
   const handleSoundToggle = (v: boolean) => { setSoundEnabled(v); saveToStorage("sound_enabled", v); };
@@ -77,8 +87,7 @@ export default function Index() {
     setActiveTool(id);
     trackToolUsage(id);
     recordToolEvent(id);
-    // Re-check auto unlocks
-    setTimeout(() => checkAutoUnlocks({ toolUsage: getToolUsage(), achievements: getUnlocked() }), 100);
+    setTimeout(() => checkUnlocks(), 100);
   };
 
   const handleSelectExclusive = (gameId: string) => {
@@ -106,10 +115,7 @@ export default function Index() {
     const season = ALL_SEASONS.find((s) => s.id === getCurrentSeason()?.season.id);
     const game = season?.exclusiveGames.find((g) => g.id === exclusiveGame);
     if (game && season) {
-      if (exclusiveGame === "casino_blackjack") body = <Blackjack />;
-      else if (exclusiveGame === "casino_slots") body = <Slots />;
-      else if (exclusiveGame === "casino_roulette") body = <RouletteRoyale />;
-      else body = <GenericSeasonGame game={game} season={season} />;
+      body = <GenericSeasonGame game={game} season={season} />;
       body = (
         <div className="space-y-3">
           <button

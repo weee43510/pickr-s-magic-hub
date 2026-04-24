@@ -1,7 +1,8 @@
 import { useState } from "react";
-import type { Season, SeasonExclusiveGame } from "@/lib/seasons";
 import { sounds } from "@/lib/sounds";
 import { celebrate } from "@/lib/confetti";
+import type { Season, SeasonExclusiveGame } from "@/lib/seasons";
+import { CasinoHeader, DailyEventBanner, useChipCounter, playRound } from "@/components/tools/casino/_shared";
 
 interface Props {
   game: SeasonExclusiveGame;
@@ -9,58 +10,49 @@ interface Props {
 }
 
 /** Generic playable shell for season exclusives that don't have a custom screen yet.
- * It's a quick "press your luck" mini-game themed to the season. */
+ *  A quick "press your luck" mini-game themed to the season. Uses the chips economy. */
 export default function GenericSeasonGame({ game, season }: Props) {
-  const [chips, setChips] = useState(100);
+  const { chips, refresh } = useChipCounter();
   const [history, setHistory] = useState<string[]>([]);
   const [busy, setBusy] = useState(false);
 
   const play = () => {
     if (busy || chips < 5) return;
+    if (!playRound({ stake: 5, rawPayout: 0, coreGameId: `exclusive_${game.id}` }).ok) return;
     setBusy(true);
-    setChips((c) => c - 5);
+    refresh();
     sounds.click();
     const roll = Math.random();
     setTimeout(() => {
       let line: string;
       if (roll > 0.92) {
-        const win = 50;
-        setChips((c) => c + win);
-        line = `💥 BIG WIN +${win}`;
+        const round = playRound({ stake: 0, rawPayout: 50, coreGameId: `exclusive_${game.id}` });
+        line = `💥 BIG WIN +${round.finalPayout}`;
         celebrate("medium");
         sounds.win();
       } else if (roll > 0.55) {
-        const win = 12;
-        setChips((c) => c + win);
-        line = `✅ Win +${win}`;
+        const round = playRound({ stake: 0, rawPayout: 12, coreGameId: `exclusive_${game.id}` });
+        line = `✅ Win +${round.finalPayout}`;
         sounds.win();
       } else {
         line = `❌ Loss −5`;
       }
       setHistory((h) => [line, ...h].slice(0, 8));
       setBusy(false);
+      refresh();
     }, 600);
   };
 
   return (
-    <div className="space-y-6 animate-fade-in">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-amber-500">{season.name} · Exclusive</p>
-          <h1 className="font-display font-black text-4xl">{game.emoji} {game.label}</h1>
-          <p className="text-sm text-muted-foreground mt-1">{game.description}</p>
-        </div>
-        <div className="glass-card px-4 py-2 text-right">
-          <p className="text-[10px] font-mono uppercase text-muted-foreground">Chips</p>
-          <p className="text-2xl font-display font-black text-amber-400">💰 {chips}</p>
-        </div>
-      </div>
+    <div className="space-y-5 animate-fade-in">
+      <CasinoHeader title={game.label} subtitle={`${season.name} · Exclusive`} emoji={game.emoji} chips={chips} />
+      <DailyEventBanner />
 
-      <div className="glass-card p-8 text-center space-y-4">
+      <div className="rounded-2xl p-8 border border-amber-500/30 bg-gradient-to-br from-black/70 to-amber-950/30 text-center space-y-4">
         <div className="text-7xl">{game.emoji}</div>
         <p className="text-xs text-muted-foreground italic max-w-md mx-auto">
-          A taste of {game.label}. Press to play — costs 5 chips. Win up to 50.
-          A deeper version is brewing.
+          {game.description} — costs 5 chips per play. Win up to 50.
+          A deeper version is in the workshop.
         </p>
         <button
           onClick={play}
@@ -72,7 +64,7 @@ export default function GenericSeasonGame({ game, season }: Props) {
       </div>
 
       {history.length > 0 && (
-        <div className="glass-card p-3">
+        <div className="rounded-xl p-3 border border-border/40 bg-muted/10">
           <p className="text-[10px] font-mono uppercase text-muted-foreground mb-2">Recent rolls</p>
           <ul className="text-sm space-y-1 font-mono">
             {history.map((h, i) => <li key={i}>{h}</li>)}
