@@ -22,7 +22,7 @@ export const CHANGELOGS: ChangelogEntry[] = [
     version: "1.0.0",
     date: "2026-04-14",
     notes: [
-      "Initial release of Pickr",
+      "Initial release of Pickr with the main 6 tools",
       "AI Mystic 8-Ball with sassy responses",
       "Finger Roulette with multi-touch support",
       "Photo Wheel with weights & elimination mode",
