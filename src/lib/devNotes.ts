@@ -79,38 +79,12 @@ export const DEV_NOTES: DevNote[] = [
     mood: "🚀",
   },
   {
-    date: "2026-04-24",
-    title: "Addressing the Casino Update",
-    body: `🎰 So, The Casino Season has been out for 1-2 days now, and I just want to say — I've been hearing a lot of your guys' problems, and yes, I AM currently working on fixing them.
-
-📛 The main issues that even I experienced myself are:
-• Chips running out  
-• Exclusive games not feeling fun  
-• Bugs  
-• Membership pass issues  
-• Bad shop  
-• Toolbar problems  
-
-…and you're not crazy 😅
-
-🛠️ I can't fix all of these instantly, but an update IS coming May 1st or 2nd. Here's what I'm working on:
-
-• Chip recovery system (no more getting stuck at 0)  
-• Interactive exclusive games  
-• Membership progression + rewards  
-• Better shop with actually good rewards  
-• Casino visuals + live countdown  
-• Casino Membership / Season Pass rework  
-• Toolbar rework  
-• More fixes 🤫  
-
-📅 Just a reminder — this won't release until May 1st (around 6 days).
-
-🤷 For Season 2… expectations are high. It should be way better, with more content and more exciting features.
-
-P.S. This is NOT the final version — it's basically a live beta.
-
-🙏 Thanks for being patient — more updates May 1st.`,
-    mood: "🛠️",
-  },
+  date: "2026-04-24",
+  title: "Addressing the Casino Update",
+  body:
+    "🎰 The Casino Season has been out for 1-2 days, and I’ve been hearing your feedback. Chips running out, exclusives not feeling fun, bugs, membership issues, shop problems, and toolbar issues — you're not crazy 😅 " +
+    "I can't fix everything instantly, but an update is coming May 1st or 2nd. Planned fixes include chip recovery, interactive exclusives, membership rewards, better shop items, improved visuals, countdown timers, and a toolbar rework. " +
+    "This is not the final version — it’s more like a live beta. Thanks for being patient 🙏",
+  mood: "🛠️",
+},
 ];
