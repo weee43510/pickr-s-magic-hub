@@ -1,4 +1,4 @@
-import { Settings, Volume2, VolumeX, RotateCcw, Info, Palette, Check, Monitor, Tablet, Smartphone, Sparkles, KeyRound, Map, Trophy, Headphones, Brain, MessageCircle, Heart, Coffee } from "lucide-react";
+import { Settings, Volume2, VolumeX, RotateCcw, Info, Palette, Check, Monitor, Tablet, Smartphone, Sparkles, KeyRound, Map, Headphones, Brain, MessageCircle, Heart, Coffee, Crown, Package } from "lucide-react";
 import DevNotesPanel from "@/components/DevNotesPanel";
 import { useEffect, useState } from "react";
 import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription, DialogHeader } from "@/components/ui/dialog";
@@ -12,13 +12,13 @@ import type { DeviceType } from "@/components/DevicePicker";
 import Roadmap from "@/components/Roadmap";
 import SettingsMiniGame from "@/components/SettingsMiniGame";
 import ThemeEditor from "@/components/ThemeEditor";
-import AchievementsPanel from "@/components/AchievementsPanel";
 import SoundStudio from "@/components/SoundStudio";
 import CustomTriviaPanel from "@/components/CustomTriviaPanel";
 import SuggestionsPanel from "@/components/SuggestionsPanel";
+import MembershipPanel from "@/components/MembershipPanel";
+import CasinoInventoryPanel from "@/components/CasinoInventoryPanel";
 import { isRainbowUnlocked, applyRainbowTheme, matrixRainOverlay, isDevMode, setDevMode } from "@/lib/easterEggs";
 import { emojiRain, celebrate } from "@/lib/confetti";
-import { unlock } from "@/lib/achievements";
 import { toast } from "sonner";
 
 interface Props {
