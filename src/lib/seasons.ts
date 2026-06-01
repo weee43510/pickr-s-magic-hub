@@ -43,8 +43,8 @@ const SEASON_1: Season = {
   id: "casino",
   name: "The Casino",
   emoji: "🎰",
-  tagline: "High rollers only. Place your bets.",
-  durationDays: 14,
+  tagline: "The first and last season. Stays open forever.",
+  durationDays: 36500, // permanent — first and final season
   accent: "45 95% 55%",
   bannerGradient: "linear-gradient(135deg, hsl(45 95% 55% / 0.25), hsl(0 80% 50% / 0.25), hsl(45 95% 35% / 0.3))",
   coreToolIds: ["flipduel", "neonRoulette", "dealersBluff", "chipCascade", "mindArena"],

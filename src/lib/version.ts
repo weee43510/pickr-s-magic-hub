@@ -1,8 +1,19 @@
-export const APP_VERSION = "7.1.0";
+export const APP_VERSION = "7.2.0 — FINAL";
 
 export interface ChangelogEntry { version: string; date: string; notes: string[]; }
 
 export const CHANGELOGS: ChangelogEntry[] = [
+  {
+    version: "7.2.0 — FINAL",
+    date: "2026-06-01",
+    notes: [
+      "💛 GOODBYE — this is the final update. No more new versions.",
+      "🌐 The app stays online forever — every tool, game, and unlock keeps working",
+      "🎰 Season 1 (The Casino) is now the FIRST and LAST season — never ends",
+      "🚫 Future seasons cancelled — no more seasonal rotation, nothing locks out",
+      "🙏 Thank you for playing — Elias",
+    ],
+  },
   {
     version: "7.1.0",
     date: "2026-05-01",

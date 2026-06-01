@@ -6,6 +6,7 @@ import { Search, Star, Clock, Sparkles, Award, Flame, TrendingUp, Brain, Crown }
 import { getGameOfTheWeek } from "@/lib/gameOfTheWeek";
 import { getTrending, getHotNow, getMostReplayed } from "@/lib/discovery";
 import { getCurrentSeason } from "@/lib/seasons";
+import GoodbyeBanner from "@/components/GoodbyeBanner";
 
 interface Props { onPick: (id: ToolId) => void; }
 
@@ -53,11 +54,14 @@ export default function Dashboard({ onPick }: Props) {
 
   return (
     <div className="space-y-8 animate-fade-in">
+      {/* Farewell banner */}
+      <GoodbyeBanner />
+
       {/* Hero */}
       <div className="space-y-3">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-card text-[10px] font-mono uppercase tracking-[0.3em] text-muted-foreground">
           <Sparkles className="w-3 h-3 text-neon-cyan" />
-          <span>Home · v6.2</span>
+          <span>Home · v7.2 — Final</span>
         </div>
         <h1 className="font-display font-black text-5xl sm:text-6xl tracking-tight gradient-text leading-none">
           Pick a tool.
@@ -79,7 +83,7 @@ export default function Dashboard({ onPick }: Props) {
             <div className="flex-1 min-w-0">
               <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-amber-300">Season 1 · Live now</p>
               <p className="font-display font-black text-2xl">{seasonInfo.season.emoji} {seasonInfo.season.name}</p>
-              <p className="text-xs text-amber-200/80 italic">"{seasonInfo.season.tagline}" · {seasonInfo.daysLeft} days left</p>
+              <p className="text-xs text-amber-200/80 italic">"{seasonInfo.season.tagline}" · first & final season</p>
             </div>
             <span className="text-3xl opacity-50 group-hover:opacity-100 transition-opacity">→</span>
           </div>

@@ -1,5 +1,6 @@
 import { Settings, Volume2, VolumeX, RotateCcw, Info, Palette, Check, Monitor, Tablet, Smartphone, Sparkles, KeyRound, Map, Headphones, Brain, MessageCircle, Heart, Coffee, Crown, Package } from "lucide-react";
 import DevNotesPanel from "@/components/DevNotesPanel";
+import GoodbyeBanner from "@/components/GoodbyeBanner";
 import { useEffect, useState } from "react";
 import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription, DialogHeader } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -300,6 +301,8 @@ export default function SettingsPanel({ soundEnabled, onSoundToggle, deviceType,
 
             {/* ABOUT */}
             <TabsContent value="about" className="space-y-5 max-w-2xl mx-auto">
+              <GoodbyeBanner />
+
               <div className="glass-card p-4 flex items-center justify-between">
                 <span className="text-sm">Version</span>
                 <button onClick={handleVersionTap} className="text-base font-mono neon-text-cyan spring-btn font-bold">
@@ -311,7 +314,7 @@ export default function SettingsPanel({ soundEnabled, onSoundToggle, deviceType,
                 <p className="text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground inline-flex items-center gap-1.5">
                   <Heart className="w-3 h-3 text-neon-pink" /> website by Elias
                 </p>
-                <p className="text-[11px] text-muted-foreground">Made with love. Got ideas? Use the Suggest tab!</p>
+                <p className="text-[11px] text-muted-foreground">Made with love. The app stays online forever — thanks for playing.</p>
               </div>
 
               <Button
