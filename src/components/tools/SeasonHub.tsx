@@ -11,6 +11,7 @@ import {
 } from "@/lib/casino";
 import { celebrate } from "@/lib/confetti";
 import { toast } from "sonner";
+import GoodbyeBanner from "@/components/GoodbyeBanner";
 
 interface Props {
   onPickMain: (id: ToolId) => void;
@@ -98,6 +99,8 @@ export default function SeasonHub({ onPickMain, onPickExclusive }: Props) {
 
   return (
     <div className="space-y-6 animate-fade-in">
+      <GoodbyeBanner variant="compact" />
+
       {/* ── Cinematic Banner with ambience ── */}
       <div className="rounded-2xl p-6 relative overflow-hidden border border-amber-500/30" style={{ background: season.bannerGradient }}>
         {/* animated glow */}
@@ -119,18 +122,17 @@ export default function SeasonHub({ onPickMain, onPickExclusive }: Props) {
         <div className="flex items-start justify-between gap-4 flex-wrap relative">
           <div className="space-y-1.5">
             <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-background/50 border border-amber-500/40 text-[10px] font-mono uppercase tracking-[0.3em] text-amber-300">
-              <Sparkles className="w-3 h-3" /> Season 1 of ∞
+              <Sparkles className="w-3 h-3" /> Season 1 · First & Final · Permanent
             </div>
             <h2 className="font-display font-black text-4xl md:text-5xl">{season.emoji} {season.name}</h2>
             <p className="text-sm text-amber-200/80 italic">"{season.tagline}"</p>
           </div>
           <div className="text-right space-y-1">
-            <div className={`inline-flex items-center gap-1.5 text-sm font-mono ${finalDay ? "text-rose-300 animate-pulse" : "text-amber-300"}`}>
+            <div className="inline-flex items-center gap-1.5 text-sm font-mono text-amber-300">
               <Calendar className="w-3.5 h-3.5" />
-              {active ? fmtCountdown(liveLeft) : "ENDED"}
-              {finalDay && <span className="text-[10px] uppercase ml-1">⚠ FINAL DAY</span>}
+              Never ends
             </div>
-            <p className="text-[10px] font-mono text-muted-foreground">Day {daysIn + 1} of {season.durationDays}</p>
+            <p className="text-[10px] font-mono text-muted-foreground">Day {daysIn + 1} · stays open forever</p>
             <div className="rounded-lg px-3 py-1.5 mt-1 bg-black/40 border border-amber-500/40">
               <p className="text-[11px] font-mono text-amber-400">💰 {chips} chips</p>
             </div>
