@@ -83,7 +83,7 @@ export default function Dashboard({ onPick }: Props) {
             <div className="flex-1 min-w-0">
               <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-amber-300">Season 1 · Live now</p>
               <p className="font-display font-black text-2xl">{seasonInfo.season.emoji} {seasonInfo.season.name}</p>
-              <p className="text-xs text-amber-200/80 italic">"{seasonInfo.season.tagline}" · {seasonInfo.daysLeft} days left</p>
+              <p className="text-xs text-amber-200/80 italic">"{seasonInfo.season.tagline}" · first & final season</p>
             </div>
             <span className="text-3xl opacity-50 group-hover:opacity-100 transition-opacity">→</span>
           </div>
